@@ -12,8 +12,11 @@ abstract class BaseState<T extends StatefulWidget> extends State<T> {
 
   @override
   Widget build(BuildContext context) {
-    return new WillPopScope(
-      onWillPop: _onWillPop,
+    return new PopScope(
+      canPop: false,
+      onPopInvoked: (didPop){
+      _onWillPop();
+      },
       child: buildChild(context),
     );
   }
